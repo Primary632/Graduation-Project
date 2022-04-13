@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.peng.elderlymanage.dao.ElderlyInfoDao">
+
+    <!-- 开启二级缓存 -->
+    <!-- <cache type="org.mybatis.caches.ehcache.LoggingEhcache"/> -->
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.peng.elderlymanage.entity.ElderlyInfo">
+        <id column="id" property="id" />
+        <result column="name" property="name" />
+        <result column="age" property="age" />
+        <result column="sex" property="sex" />
+        <result column="address" property="address" />
+        <result column="phone" property="phone" />
+        <result column="selfcare_level" property="selfcareLevel" />
+        <result column="isillness" property="isillness" />
+        <result column="content" property="content" />
+        <result column="memberid" property="memberid" />
+        <association property="member" column="memberid" select="com.peng.elderlymanage.dao.FamilyMemberDao.selectMemberByMid"/>
+
+
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, name, age, sex, address, phone, selfcare_level, isillness, content, memberid
+    </sql>
+    <select id="findPageByElder" resultMap="BaseResultMap" >
+        select * from rt_elderly_info
+                          ${ew.customSqlSegment}
+
+    </select>
+
+</mapper>

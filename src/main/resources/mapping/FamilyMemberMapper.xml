@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.peng.elderlymanage.dao.FamilyMemberDao">
+
+    <!-- 开启二级缓存 -->
+<!--    <cache type="org.mybatis.caches.ehcache.LoggingEhcache"/>-->
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.peng.elderlymanage.entity.FamilyMember">
+        <id column="id" property="id" />
+        <result column="mname" property="mname" />
+        <result column="mphone" property="mphone" />
+        <result column="eid" property="eid" />
+        <result column="sex" property="sex" />
+        <result column="status" property="status"/>
+        <result column="created_time" property="createdTime"/>
+        <result column="updated_time" property="updatedTime"/>
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, mname, mphone, eid, sex, status,created_time,updated_time
+    </sql>
+    <select id="selectMemberByMid" resultMap="BaseResultMap">
+        select <include refid="Base_Column_List"/> from rt_family_member where id = #{memberid}
+    </select>
+    <insert id="insertMember" useGeneratedKeys="true" keyProperty="id" parameterType="com.peng.elderlymanage.entity.FamilyMember">
+insert into rt_family_member(mname, mphone, sex,created_time) values(#{mname},#{mphone},#{sex},#{createdTime} )
+    </insert>
+</mapper>

@@ -1,6 +1,8 @@
 package com.peng.elderlymanage.server;
 
-import com.peng.elderlymanage.entity.RtUser;
+import com.peng.elderlymanage.entity.RoleUrl;
+import com.peng.elderlymanage.entity.User;
+import com.peng.elderlymanage.entity.UserInfo;
 
 /**
  * Copyright (C) @2022 BeiJing Eshore Technology Co. Ltd
@@ -13,12 +15,15 @@ import com.peng.elderlymanage.entity.RtUser;
 public interface LoginServer {
     /**
      *
-     * @param rtUser
+     * @param User
      * 用户登录
      * @return
      * @author wyp
      * @date 2022/3/3
      * @version 1.0
     */
-    int loginUser(RtUser rtUser);
+    Long loginUser(User User);
+    User selectByName(User user);
+
+    int changeStatus(UserInfo user);
 }

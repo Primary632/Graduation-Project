@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.peng.elderlymanage.dao.HealthConfigDao">
+
+    <!-- 开启二级缓存 -->
+    <!-- <cache type="org.mybatis.caches.ehcache.LoggingEhcache"/> -->
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.peng.elderlymanage.entity.HealthConfig">
+        <id column="id" property="id" />
+        <result column="creator" property="creator" />
+        <result column="create_time" property="createTime" />
+        <result column="updater" property="updater" />
+        <result column="update_time" property="updateTime" />
+        <result column="min_low_blood_pressure" property="minLowBloodPressure" />
+        <result column="max_low_blood_pressure" property="maxLowBloodPressure" />
+        <result column="min_high_blood_pressure" property="minHighBloodPressure" />
+        <result column="max_high_blood_pressure" property="maxHighBloodPressure" />
+        <result column="min_heart_rate" property="minHeartRate" />
+        <result column="max_heart_rate" property="maxHeartRate" />
+        <result column="min_temperature" property="minTemperature" />
+        <result column="max_temperature" property="maxTemperature" />
+        <result column="eid" property="eid" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, creator, create_time, updater, update_time, min_low_blood_pressure, max_low_blood_pressure, min_high_blood_pressure, max_high_blood_pressure, min_heart_rate, max_heart_rate, min_temperature, max_temperature, eid
+    </sql>
+
+</mapper>

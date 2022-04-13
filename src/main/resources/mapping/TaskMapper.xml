@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.peng.elderlymanage.dao.TaskDao">
+
+
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.peng.elderlymanage.entity.Task">
+        <id column="id" property="id" />
+        <result column="eid" property="eid" />
+        <result column="input_data" property="inputData" />
+        <result column="temperature" property="temperature" />
+        <result column="blood_glucose" property="bloodGlucose" />
+        <result column="blood_pressure" property="bloodPressure" />
+        <result column="blood_fat" property="bloodFat" />
+        <result column="updated_id" property="updatedId" />
+        <result column="nid" property="nid" />
+        <result column="updated_time" property="updatedTime" />
+        <result column="created_time" property="createdTime" />
+        <result column="deleted_time" property="deletedTime" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, eid, input_data, temperature, blood_glucose, blood_pressure, blood_fat, updated_id, nid, updated_time, created_time, deleted_time
+    </sql>
+    <update id="updateByTid" parameterType="com.peng.elderlymanage.vo.NurseTaskVo">
+        UPDATE rt_task SET temperature=#{temperature}
+                         <if test="bloodPressure!=null and bloodPressure!=''">
+                         ,blood_pressure=#{bloodPressure}
+                         </if>
+                         <if test="bloodGlucose!=null and bloodGlucose!=''">
+                         ,blood_glucose=#{bloodGlucose}
+                         </if>
+                         <if test="bloodFat!=null and bloodFat!=''">
+                         ,blood_fat=#{bloodFat}
+                         </if>
+                         <if test="nid!=null and nid!=''">
+                         ,nid=#{nid}
+                         </if>
+                        where id=#{id}
+
+    </update>
+</mapper>

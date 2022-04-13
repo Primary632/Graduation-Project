@@ -1,8 +1,13 @@
 package com.peng.elderlymanage.dao;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.peng.elderlymanage.entity.RtUser;
+import com.peng.elderlymanage.entity.RoleUrl;
+import com.peng.elderlymanage.entity.User;
+import com.peng.elderlymanage.entity.UserInfo;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Update;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -15,7 +20,7 @@ import org.springframework.stereotype.Repository;
  */
 @Mapper
 @Repository
-public interface LoginDao extends BaseMapper<RtUser> {
-
-
+public interface LoginDao extends BaseMapper<User> {
+    @Update("update rt_user set status=#{user.status} ${ew.customSqlSegment} ")
+    int updateStatus(User user, @Param("ew") LambdaQueryWrapper<User> wrapper);
 }

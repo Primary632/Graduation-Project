@@ -14,7 +14,6 @@ import java.net.UnknownHostException;
 @SpringBootApplication
 @Slf4j
 public class ElderlymanageApplication {
-
     public static void main(String[] args) throws UnknownHostException {
         ConfigurableApplicationContext application = SpringApplication.run(ElderlymanageApplication.class, args);
         Environment env = application.getEnvironment();

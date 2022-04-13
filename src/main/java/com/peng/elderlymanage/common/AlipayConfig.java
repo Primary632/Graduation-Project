@@ -1,4 +1,4 @@
-package com.peng.elderlymanage.config;
+package com.peng.elderlymanage.common;
 
 import java.io.FileWriter;
 import java.io.IOException;

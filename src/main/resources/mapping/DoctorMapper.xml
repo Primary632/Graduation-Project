@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.peng.elderlymanage.dao.DoctorDao">
+
+    <!-- 开启二级缓存 -->
+    <!-- <cache type="org.mybatis.caches.ehcache.LoggingEhcache"/> -->
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.peng.elderlymanage.entity.Doctor">
+        <id column="id" property="id" />
+        <result column="dname" property="dname" />
+        <result column="floor" property="floor" />
+        <result column="room" property="room" />
+        <result column="phone" property="phone" />
+        <result column="email" property="email" />
+        <result column="stationid" property="stationid" />
+        <result column="created_time" property="createdTime" />
+        <result column="deleted_time" property="deletedTime" />
+        <result column="status" property="status" />
+    </resultMap>
+
+
+    <resultMap id="MyBaseMap" type="com.peng.elderlymanage.entity.Doctor">
+        <id column="id" property="id" />
+        <result column="dname" property="dname" />
+        <result column="floor" property="floor" />
+        <result column="room" property="room" />
+        <result column="phone" property="phone" />
+        <result column="email" property="email" />
+        <result column="stationid" property="stationid" />
+        <result column="created_time" property="createdTime" />
+        <result column="deleted_time" property="deletedTime" />
+        <result column="status" property="status" />
+        <association property="station" javaType="com.peng.elderlymanage.entity.DoctorStation" >
+            <id column="id" property="id"/>
+            <result column="station_name" property="stationName"/>
+        </association>
+    </resultMap>
+    <resultMap id="DoctorVo" type="com.peng.elderlymanage.vo.DoctorVo">
+        <id column="id" property="id" />
+        <result column="dname" property="dname" />
+        <result column="floor" property="floor" />
+        <result column="room" property="room" />
+        <result column="phone" property="phone" />
+        <result column="email" property="email" />
+        <result column="stationid" property="stationid" />
+        <result column="created_time" property="createdTime" />
+        <result column="deleted_time" property="deletedTime" />
+        <result column="status" property="status" />
+        <result column="station_name" property="stationName"/>
+
+    </resultMap>
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, dname, floor, room, phone, email, stationid, created_time, deleted_time, status
+    </sql>
+    <select id="selectPages" resultMap="DoctorVo">
+        select d.*,s.* from rt_doctor d left JOIN rt_doctor_station s on s.id =d.stationid where d.status="1"
+
+    </select>
+    <update id="deleteDoctor" >
+        update rt_doctor set status = "0",deleted_time=#{deleteTime}
+            ${ew.customSqlSegment}
+    </update>
+
+
+</mapper>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.peng.elderlymanage.dao.UserInfoDao">
+
+    <!-- 开启二级缓存 -->
+    <!-- <cache type="org.mybatis.caches.ehcache.LoggingEhcache"/> -->
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.peng.elderlymanage.entity.UserInfo">
+        <id column="id" property="id" />
+        <result column="nickName" property="nickName" />
+        <result column="phone" property="phone" />
+        <result column="email" property="email" />
+        <result column="address" property="address" />
+        <result column="registration_time" property="registrationTime" />
+        <result column="uid" property="uid" />
+
+    </resultMap>
+<resultMap id="oneToOne" type="com.peng.elderlymanage.entity.UserInfo">
+    <id column="id" property="id" />
+    <result column="nick_name" property="nickName" />
+    <result column="phone" property="phone" />
+    <result column="email" property="email" />
+    <result column="address" property="address" />
+    <result column="sex" property="sex" />
+    <result column="registration_time" property="registrationTime" />
+    <result column="uid" property="uid" />
+    <association column="uid" property="user" select="com.peng.elderlymanage.dao.UserDao.selectUserByUid"/>
+</resultMap>
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, nick_name, phone, email, address, registration_time, uid,sex
+    </sql>
+<select id="findPageByUser" resultMap="oneToOne" >
+select * from rt_user_info
+                  ${ew.customSqlSegment}
+
+</select>
+
+    <update id="updateUserById" parameterType="com.peng.elderlymanage.entity.UserInfo">
+update rt_user_info set nick_name=#{userInfo.nickName}, phone=#{userInfo.phone},email=#{userInfo.email},address=#{userInfo.address},sex=#{userInfo.sex}
+
+    ${ew.customSqlSegment}
+
+    </update>
+
+</mapper>

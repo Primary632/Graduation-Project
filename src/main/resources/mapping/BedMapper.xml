@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.peng.elderlymanage.dao.BedDao">
+
+    <!-- 开启二级缓存 -->
+<!--     <cache type="org.mybatis.caches.ehcache.LoggingEhcache"/> -->
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.peng.elderlymanage.entity.Bed">
+        <id column="id" property="id" />
+        <result column="price" property="price" />
+        <result column="is_stayin" property="isStayin" />
+        <result column="floor_num" property="floorNum" />
+        <result column="room_num" property="roomNum" />
+        <result column="bed_num" property="bedNum" />
+        <result column="elderly_id" property="elderlyId" />
+        <result column="status" property="status" />
+        <result column="stayin_time" property="stayinTime" />
+        <result column="stayout_time" property="stayoutTime" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, price, is_stayin, floor_num, room_num, bed_num, elderly_id, status, stayin_time, stayout_time
+    </sql>
+
+</mapper>
